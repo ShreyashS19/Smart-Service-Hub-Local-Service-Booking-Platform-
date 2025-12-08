@@ -1,25 +1,23 @@
-# Use official Eclipse Temurin JDK 22 image
 FROM eclipse-temurin:22-jdk-alpine
 
-# Set working directory
 WORKDIR /app
 
-# Copy Maven wrapper + config
 COPY pom.xml .
 COPY mvnw .
 COPY .mvn .mvn
 
-# Pre-download dependencies to speed up builds
+# Fix permission problem
+RUN chmod +x mvnw
+
+# Pre-download dependencies
 RUN ./mvnw dependency:go-offline
 
-# Copy source code
-COPY . .
+# Copy entire source code
+COPY src src
 
 # Build the application
-RUN ./mvnw clean install -DskipTests
+RUN ./mvnw clean package -DskipTests
 
-# Expose Spring Boot default port
 EXPOSE 8080
 
-# Run the generated JAR file
-CMD ["java", "-jar", "target/backend-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "target/*.jar"]
