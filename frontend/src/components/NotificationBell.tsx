@@ -12,7 +12,8 @@ import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import { useToast } from "@/hooks/use-toast";
 
-const BACKEND_URL = "http://localhost:8080";
+// const BACKEND_URL = "http://localhost:8080";
+const BACKEND_URL = import.meta.env.VITE_API_BASE || "http://localhost:8080";
 
 interface Notification {
   notificationId: number;
