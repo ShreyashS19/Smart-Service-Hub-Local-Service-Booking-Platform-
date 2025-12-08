@@ -78,7 +78,9 @@ const SignUp = () => {
 
     try {
       // ✅ FIXED: Actually send data to backend API
-      const response = await fetch("${BACKEND_URL}/api/auth/register", {
+      // const response = await fetch("${BACKEND_URL}/api/auth/register", {
+      const response = await fetch(`${BACKEND_URL}/api/auth/register`, {
+
         method: "POST",
         headers: {
           "Content-Type": "application/json",
