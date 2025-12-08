@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+const BACKEND_URL = import.meta.env.VITE_API_BASE;
+
 import {
   Card,
   CardContent,
@@ -10,6 +12,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+
 import {
   Select,
   SelectContent,
@@ -85,17 +88,18 @@ const Login = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch("${BACKEND_URL}/api/auth/login", {
-        method: "POST",
+      // const response = await fetch("${BACKEND_URL}/api/auth/login", {
+      const y = await fetch(`${BACKEND_URL}/api/auth/login`, {
+      method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
 
-      const data = await response.json();
+      const data = await y.json();
 
-      if (!response.ok) {
+      if (!y.ok) {
         const errorMessage = data.message || "Login failed";
 
         // ❌ SCENARIO 1: User not found (account doesn't exist)
