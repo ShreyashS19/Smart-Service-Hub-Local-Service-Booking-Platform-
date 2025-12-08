@@ -35,7 +35,7 @@ type LoginSession = {
   mobile?: string;
 };
 
-const BACKEND_BASE = import.meta.env.VITE_API_BASE?.toString() || "http://localhost:8080";
+const BACKEND_BASE = import.meta.env.VITE_API_BASE?.toString();
 
 const Reviews = () => {
   const { toast } = useToast();

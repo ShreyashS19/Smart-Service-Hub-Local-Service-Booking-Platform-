@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+const BACKEND_URL = import.meta.env.VITE_API_BASE;
+
 import {
   Card,
   CardContent,
@@ -76,7 +78,7 @@ const SignUp = () => {
 
     try {
       // ✅ FIXED: Actually send data to backend API
-      const response = await fetch("http://localhost:8080/api/auth/register", {
+      const response = await fetch("${BACKEND_URL}/api/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

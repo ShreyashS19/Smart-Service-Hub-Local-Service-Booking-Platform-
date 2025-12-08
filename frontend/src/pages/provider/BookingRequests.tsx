@@ -21,7 +21,7 @@ type Booking = {
 
 type Session = { id: number; role: "SERVICE_PROVIDER" | "USER" | "ADMIN" };
 
-const BACKEND_BASE = import.meta.env.VITE_API_BASE?.toString() || "http://localhost:8080";
+const BACKEND_BASE = import.meta.env.VITE_API_BASE?.toString();
 
 export default function BookingRequests() {
   const location = useLocation();

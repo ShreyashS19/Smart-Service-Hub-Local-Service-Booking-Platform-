@@ -1,6 +1,7 @@
 // ============================================
 // INTERFACES
 // ============================================
+const BACKEND_URL = import.meta.env.VITE_API_BASE;
 
 interface LoginRequest {
   mobile: string;
@@ -71,7 +72,7 @@ export class AuthError extends Error {
 // ============================================
 
 class AuthService {
-  private readonly baseURL = "http://localhost:8080/api/auth";
+  private readonly baseURL = `${BACKEND_URL}/api/auth`;
 
   /**
    * Login user with phone number, password, and role

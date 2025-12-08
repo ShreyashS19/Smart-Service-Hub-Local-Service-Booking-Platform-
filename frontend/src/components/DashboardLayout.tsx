@@ -5,6 +5,8 @@ import { LogOut, Wrench } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import NotificationBell from "./NotificationBell";
 
+const BACKEND_URL = import.meta.env.VITE_API_BASE;
+
 interface DashboardLayoutProps {
   children: ReactNode;
   title: string;
@@ -59,7 +61,7 @@ const DashboardLayout = ({
 
   const handleAcceptBooking = async (bookingId: number) => {
     try {
-      const response = await fetch(`http://localhost:8080/api/bookings/${bookingId}/status`, {
+      const response = await fetch(`${BACKEND_URL}/api/bookings/${bookingId}/status`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status: "CONFIRMED" }),
@@ -83,7 +85,7 @@ const DashboardLayout = ({
 
   const handleRejectBooking = async (bookingId: number) => {
     try {
-      const response = await fetch(`http://localhost:8080/api/bookings/${bookingId}/status`, {
+      const response = await fetch(`${BACKEND_URL}/api/bookings/${bookingId}/status`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status: "REJECTED" }),
@@ -127,8 +129,6 @@ const DashboardLayout = ({
                 <NotificationBell
                   userId={userId}
                   userType={userType}
-                  onAcceptBooking={userType === "PROVIDER" ? handleAcceptBooking : undefined}
-                  onRejectBooking={userType === "PROVIDER" ? handleRejectBooking : undefined}
                 />
               )}
               

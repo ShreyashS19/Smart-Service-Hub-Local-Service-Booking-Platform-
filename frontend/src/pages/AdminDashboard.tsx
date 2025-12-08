@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card"
 import { TrendingUp, Users, Wrench, Calendar, AlertCircle, Activity, Clock, CheckCircle } from "lucide-react";
 
 // const BACKEND_URL = "http://localhost:8080";
-const BACKEND_URL = import.meta.env.VITE_API_BASE || "http://localhost:8080";
+const BACKEND_URL = import.meta.env.VITE_API_BASE ;
 
 const AdminDashboard = () => {
   const location = useLocation();

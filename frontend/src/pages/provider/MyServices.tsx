@@ -26,7 +26,7 @@ type Session = {
   fullName?: string 
 };
 
-const BACKEND_BASE = import.meta.env.VITE_API_BASE?.toString() || "http://localhost:8080";
+const BACKEND_BASE = import.meta.env.VITE_API_BASE?.toString();
 
 export default function MyServices() {
   const location = useLocation();
