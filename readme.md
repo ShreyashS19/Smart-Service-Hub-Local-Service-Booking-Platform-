@@ -85,19 +85,6 @@ Built with a clean architecture and modern stack, the platform ensures **scalabi
         ▼
 🛡 Admin Manages Complaints / Providers / Users
 
-
----
-
-
-# 🏷 **Additional Enhanced Badges**
-
-<p align="center">
-  <img src="https://img.shields.io/badge/Build-Passing-brightgreen?style=flat-square" />
-  <img src="https://img.shields.io/badge/License-MIT-yellow?style=flat-square" />
-  <img src="https://img.shields.io/badge/PRs-Welcome-blue?style=flat-square" />
-  <img src="https://img.shields.io/badge/Maintained-Yes-success?style=flat-square" />
-</p>
-
 ---
 
 # ⚙️ **Tech Stack**
@@ -115,21 +102,48 @@ Built with a clean architecture and modern stack, the platform ensures **scalabi
 
 # 📁 **Project Structure**
 
-```
 Smart-Service-Hub/
-│── backend/
-│   ├── controllers/
-│   ├── services/
-│   ├── repositories/
-│   ├── validation/
-│   └── Dockerfile
 │
-│── frontend/
-│   ├── components/
-│   ├── pages/
-│   ├── services/
-│   └── vite.config.ts
-```
+├── backend/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/com/smarthub/
+│   │   │   │   ├── controllers/
+│   │   │   │   ├── services/
+│   │   │   │   ├── repositories/
+│   │   │   │   ├── dto/
+│   │   │   │   ├── entity/
+│   │   │   │   ├── validation/
+│   │   │   │   ├── exception/
+│   │   │   │   └── SmartServiceHubApplication.java
+│   │   │   └── resources/
+│   │   │       ├── application.properties
+│   │   │       └── data.sql
+│   │   ├── test/
+│   │   │   └── (test files)
+│   ├── pom.xml
+│   ├── Dockerfile
+│   └── mvnw / mvnw.cmd
+│
+├── frontend/
+│   ├── public/
+│   │   └── robots.txt
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   ├── hooks/
+│   │   ├── lib/
+│   │   ├── App.tsx
+│   │   ├── main.tsx
+│   │   └── index.css
+│   ├── package.json
+│   ├── tsconfig.json
+│   ├── vite.config.ts
+│   └── tailwind.config.ts
+│
+└── README.md
+
 
 ---
 
