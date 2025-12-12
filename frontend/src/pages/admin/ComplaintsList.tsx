@@ -37,10 +37,10 @@ const ComplaintsList = () => {
         }
         
         const data = await res.json();
-        console.log("✅ Complaints fetched:", data.length);
+        console.log(" Complaints fetched:", data.length);
         setComplaints(data);
       } catch (error) {
-        console.error("❌ Failed to load complaints:", error);
+        console.error(" Failed to load complaints:", error);
       }
       setLoading(false);
     };

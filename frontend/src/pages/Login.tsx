@@ -51,7 +51,6 @@ const Login = () => {
     role: "",
   });
 
-  // Validate form inputs
   const validateForm = () => {
     const newErrors = { mobile: "", password: "", role: "" };
     let isValid = true;
@@ -102,7 +101,6 @@ const Login = () => {
       if (!y.ok) {
         const errorMessage = data.message || "Login failed";
 
-        // ❌ SCENARIO 1: User not found (account doesn't exist)
         if (
           errorMessage.includes("Invalid credentials") ||
           errorMessage.includes("User not found")
@@ -111,7 +109,6 @@ const Login = () => {
           return;
         }
 
-        // ❌ SCENARIO 2: Wrong credentials
         toast({
           title: "Login Failed",
           description: "Invalid phone number or password. Please try again.",
@@ -120,12 +117,10 @@ const Login = () => {
         return;
       }
 
-      // ✅ SCENARIO 3: Login successful
       localStorage.setItem("userData", JSON.stringify(data));
       setSuccessMessage(data.message || "Login successful");
       setShowSuccessDialog(true);
 
-      // Auto-redirect after 1.5 seconds
       setTimeout(() => {
         navigate(data.redirectUrl);
       }, 1500);
@@ -145,7 +140,6 @@ const Login = () => {
     <div
       className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-blue-50 to-indigo-100"
     >
-      {/* ❌ SCENARIO 1: User Not Found Dialog */}
       <AlertDialog open={showNotFoundDialog} onOpenChange={setShowNotFoundDialog}>
         <AlertDialogContent className="max-w-md">
           <AlertDialogTitle className="flex items-center gap-2">
@@ -172,7 +166,6 @@ const Login = () => {
         </AlertDialogContent>
       </AlertDialog>
 
-      {/* ✅ SCENARIO 3: Success Dialog */}
       <AlertDialog open={showSuccessDialog} onOpenChange={setShowSuccessDialog}>
         <AlertDialogContent className="max-w-md">
           <AlertDialogTitle className="flex items-center gap-2">
@@ -198,7 +191,6 @@ const Login = () => {
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
-            {/* Mobile Number Input */}
             <div className="space-y-2">
               <Label htmlFor="mobile">Phone Number</Label>
               <Input
@@ -221,7 +213,6 @@ const Login = () => {
               )}
             </div>
 
-            {/* Password Input */}
             <div className="space-y-2">
               <Label htmlFor="password">Password</Label>
               <Input
@@ -244,7 +235,6 @@ const Login = () => {
               )}
             </div>
 
-            {/* Role Selection */}
             <div className="space-y-2">
               <Label htmlFor="role">Login as</Label>
               <Select
@@ -272,7 +262,6 @@ const Login = () => {
               )}
             </div>
 
-            {/* Submit Button */}
             <Button
               type="submit"
               className="w-full"
@@ -283,7 +272,6 @@ const Login = () => {
             </Button>
           </form>
 
-          {/* Sign Up Link */}
           <p className="text-center text-sm text-gray-600 mt-4">
             Don't have an account?{" "}
             <Link

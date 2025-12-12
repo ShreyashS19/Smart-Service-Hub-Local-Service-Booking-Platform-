@@ -24,16 +24,16 @@ public class Notification {
     private Integer receiverId;
     
     @Column(name = "receiver_type", nullable = false, length = 20)
-    private String receiverType; // "USER" or "PROVIDER"
+    private String receiverType; 
     
     @Column(name = "message", nullable = false, length = 500)
     private String message;
     
     @Column(name = "type", length = 50)
-    private String type; // "BOOKING_REQUEST", "BOOKING_ACCEPTED", "BOOKING_REJECTED"
+    private String type; 
     
     @Column(name = "status", nullable = false, length = 20)
-    private String status = "UNREAD"; // "UNREAD" or "READ"
+    private String status = "UNREAD"; 
     
     @Column(name = "related_booking_id")
     private Integer relatedBookingId;

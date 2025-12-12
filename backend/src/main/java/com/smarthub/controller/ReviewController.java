@@ -28,13 +28,11 @@ public class ReviewController {
         return ResponseEntity.ok(reviewRepository.save(review));
     }
     
-    // ✅ Added: Get reviews by provider
     @GetMapping("/provider/{providerId}")
     public ResponseEntity<List<Review>> getProviderReviews(@PathVariable Integer providerId) {
         return ResponseEntity.ok(reviewRepository.findByProviderId(providerId));
     }
-    
-    // ✅ Added: Get reviews by user
+   
     @GetMapping("/user/{userId}")
     public ResponseEntity<List<Review>> getUserReviews(@PathVariable Integer userId) {
         return ResponseEntity.ok(reviewRepository.findByUserId(userId));

@@ -37,10 +37,10 @@ const BookingsOverview = () => {
         }
         
         const data = await res.json();
-        console.log("✅ Bookings fetched:", data.length);
+        console.log(" Bookings fetched:", data.length);
         setBookings(data);
       } catch (error) {
-        console.error("❌ Failed to load bookings:", error);
+        console.error(" Failed to load bookings:", error);
       }
       setLoading(false);
     };

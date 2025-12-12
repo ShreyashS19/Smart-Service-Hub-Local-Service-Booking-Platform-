@@ -67,7 +67,6 @@ export default function ProviderReviews() {
 
   useEffect(() => { 
     load(); 
-    // eslint-disable-next-line
   }, [providerId]);
 
   const avgRating = reviews.length > 0 

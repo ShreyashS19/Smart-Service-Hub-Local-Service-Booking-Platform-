@@ -91,7 +91,6 @@ export default function BookingPage() {
     setLoading(true);
 
     try {
-      // Format time to HH:mm:ss
       const time = /^\d{2}:\d{2}$/.test(bookingData.time) 
         ? `${bookingData.time}:00` 
         : bookingData.time;
@@ -125,7 +124,6 @@ export default function BookingPage() {
       
       console.log("Booking created successfully:", booking);
 
-      // Clear booking data
       localStorage.removeItem('pendingBooking');
 
       toast({
@@ -133,7 +131,6 @@ export default function BookingPage() {
         description: `Your booking request has been sent to the provider. Booking ID: ${booking.bookingId}`,
       });
 
-      // Navigate to My Bookings
       navigate('/user-dashboard/bookings');
       
     } catch (error: any) {

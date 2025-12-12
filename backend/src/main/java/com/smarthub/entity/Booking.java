@@ -45,7 +45,6 @@ public class Booking {
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
     
-    // Booking status enum
     public enum BookingStatus {
         PENDING,
         ACCEPTED,

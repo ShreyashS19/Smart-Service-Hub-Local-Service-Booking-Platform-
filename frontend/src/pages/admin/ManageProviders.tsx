@@ -37,10 +37,10 @@ const ManageProviders = () => {
         }
         
         const data = await res.json();
-        console.log("✅ Providers fetched:", data.length);
+        console.log(" Providers fetched:", data.length);
         setProviders(data);
       } catch (error) {
-        console.error("❌ Failed to load providers:", error);
+        console.error(" Failed to load providers:", error);
       }
       setLoading(false);
     };

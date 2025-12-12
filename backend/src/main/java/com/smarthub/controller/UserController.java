@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/user")
-// ✅ REMOVED: @CrossOrigin - using global CORS config
 public class UserController {
     
     @Autowired

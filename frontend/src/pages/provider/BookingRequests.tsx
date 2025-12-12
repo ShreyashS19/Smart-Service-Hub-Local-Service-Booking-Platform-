@@ -84,7 +84,7 @@ export default function BookingRequests() {
   const setStatus = async (bookingId: number, status: BookingStatus) => {
     try {
       const res = await fetch(`${BACKEND_BASE}/api/bookings/${bookingId}/status`, {
-        method: "PUT",  // Keep as PUT since backend supports both now
+        method: "PUT",  
         headers: { 
           "Content-Type": "application/json", 
           Accept: "application/json" 
@@ -102,7 +102,7 @@ export default function BookingRequests() {
       setBookings((prev) => prev.map((b) => (b.bookingId === bookingId ? updated : b)));
       
       toast({ 
-        title: "Success ✅", 
+        title: "Success ", 
         description: `Booking ${status.toLowerCase()}` 
       });
     } catch (e: any) {
@@ -117,7 +117,6 @@ export default function BookingRequests() {
 
   useEffect(() => { 
     load(); 
-    // eslint-disable-next-line
   }, [providerId]);
 
   return (

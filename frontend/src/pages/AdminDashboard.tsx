@@ -55,10 +55,8 @@ const AdminDashboard = () => {
           activeComplaints: complaints.filter(c => c.status === "OPEN" || c.status === "Active").length,
         });
 
-        // Get recent users (last 5)
         setRecentUsers(users.slice(-5).reverse());
         
-        // Get recent bookings (last 5)
         setRecentBookings(bookings.slice(-5).reverse());
 
       } catch (error) {
@@ -94,7 +92,6 @@ const AdminDashboard = () => {
         </div>
       ) : (
         <>
-          {/* Statistics Cards */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
             <Card>
               <CardContent className="pt-6 flex items-center justify-between">
@@ -134,9 +131,7 @@ const AdminDashboard = () => {
             </Card>
           </div>
 
-          {/* Recent Activity Section */}
           <div className="grid lg:grid-cols-2 gap-6 mb-8">
-            {/* Recent Users */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -170,7 +165,6 @@ const AdminDashboard = () => {
               </CardContent>
             </Card>
 
-            {/* Recent Bookings */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -211,7 +205,6 @@ const AdminDashboard = () => {
             </Card>
           </div>
 
-          {/* Quick Stats */}
           <div className="grid sm:grid-cols-3 gap-4">
             <Card>
               <CardContent className="pt-6">
@@ -220,7 +213,7 @@ const AdminDashboard = () => {
                     <CheckCircle className="h-6 w-6 text-green-600" />
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">Completed Bookings</p>
+                    <p className="text-sm text-muted-foreground">Completed bookings awaiting payment</p>
                     <p className="text-2xl font-bold">
                       {recentBookings.filter(b => b.status === 'COMPLETED').length}
                     </p>

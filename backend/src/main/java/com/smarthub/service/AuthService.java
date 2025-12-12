@@ -47,34 +47,28 @@ public class AuthService {
     @Transactional
     public LoginResponse register(SignupRequest request) {
         try {
-            // Validate mobile
             if (!mobileNumberValidator.isValid(request.getMobile())) {
                 throw new IllegalArgumentException("Invalid mobile number. Must be 10 digits.");
             }
             
-            // Validate password
             if (!passwordValidator.isValid(request.getPassword())) {
                 throw new IllegalArgumentException(passwordValidator.getErrorMessage());
             }
             
-            // Validate email if provided
             if (request.getEmail() != null && !request.getEmail().isEmpty() 
                 && !emailValidator.isValid(request.getEmail())) {
                 throw new IllegalArgumentException("Invalid email format");
             }
             
-            // Check if mobile already exists
             if (homeRepository.existsByMobile(request.getMobile())) {
                 throw new IllegalArgumentException("Mobile number already registered");
             }
             
-            // Check if email already exists
             if (request.getEmail() != null && !request.getEmail().isEmpty() 
                 && homeRepository.existsByEmail(request.getEmail())) {
                 throw new IllegalArgumentException("Email already registered");
             }
             
-            // Create Home entry
             Home home = new Home();
             home.setFullName(request.getFullName());
             home.setMobile(request.getMobile());
@@ -82,12 +76,10 @@ public class AuthService {
             home.setPassword(request.getPassword());
             home.setRole(Home.Role.valueOf(request.getRole().toUpperCase()));
             
-            // Save and flush to ensure we get the ID immediately
             home = homeRepository.saveAndFlush(home);
             
             System.out.println("Home saved with ID: " + home.getId());
             
-            // Create role-specific entry
             Integer entityId = null;
             String redirectUrl = "";
             
@@ -114,7 +106,6 @@ public class AuthService {
                     provider.setServiceType(request.getServiceType() != null ? request.getServiceType() : "");
                     provider.setExperience(request.getExperience() != null ? request.getExperience() : 0);
                     
-                    // Handle price conversion safely
                     BigDecimal price = BigDecimal.ZERO;
                     if (request.getPrice() != null && !request.getPrice().isEmpty()) {
                         try {
@@ -146,7 +137,6 @@ public class AuthService {
                     break;
             }
             
-            // Force flush to database
             entityManager.flush();
             
             return new LoginResponse(
@@ -169,12 +159,10 @@ public class AuthService {
     @Transactional(readOnly = true)
     public LoginResponse login(LoginRequest request) {
         try {
-            // Validate mobile
             if (!mobileNumberValidator.isValid(request.getMobile())) {
                 throw new IllegalArgumentException("Invalid mobile number");
             }
             
-            // Find user in home table
             Home.Role role = Home.Role.valueOf(request.getRole().toUpperCase());
             Home home = homeRepository.findByMobileAndPasswordAndRole(
                 request.getMobile(), 
@@ -182,7 +170,6 @@ public class AuthService {
                 role
             ).orElseThrow(() -> new ResourceNotFoundException("Invalid credentials"));
             
-            // Get role-specific data
             Integer entityId = null;
             String redirectUrl = "";
             

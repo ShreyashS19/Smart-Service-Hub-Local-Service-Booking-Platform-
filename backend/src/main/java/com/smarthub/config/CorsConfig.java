@@ -16,17 +16,15 @@ public class CorsConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         
-        // Allow all origins with patterns
         config.setAllowCredentials(false);
         config.setAllowedOriginPatterns(Arrays.asList("*"));
         config.setAllowedHeaders(Arrays.asList("*"));
         
-        // ✅ IMPORTANT: Added PATCH method for notifications
         config.setAllowedMethods(Arrays.asList(
             "GET", 
             "POST", 
             "PUT", 
-            "PATCH",    // ← Added this
+            "PATCH",   
             "DELETE", 
             "OPTIONS"
         ));

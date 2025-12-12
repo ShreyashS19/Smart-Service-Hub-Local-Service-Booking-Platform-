@@ -20,13 +20,9 @@ public class BookingService {
     @Autowired
     private NotificationService notificationService;
     
-    // Date formatters for notifications
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
     
-    /**
-     * Create a new booking and send notification to provider
-     */
     public Booking createBooking(BookingRequest request) {
         Booking booking = new Booking();
         booking.setUserId(request.getUserId());
@@ -54,7 +50,7 @@ public class BookingService {
             
             notificationService.createNotification(notification);
         } catch (Exception e) {
-            System.err.println("⚠️ Failed to create notification: " + e.getMessage());
+            System.err.println(" Failed to create notification: " + e.getMessage());
             e.printStackTrace();
         }
         
@@ -76,7 +72,6 @@ public class BookingService {
         try {
             String normalizedStatus = status.toUpperCase().trim();
             
-            // Map CONFIRMED to ACCEPTED
             if ("CONFIRMED".equals(normalizedStatus)) {
                 normalizedStatus = "ACCEPTED";
             }
@@ -131,7 +126,7 @@ public class BookingService {
                 
                 notificationService.createNotification(notification);
             } catch (Exception e) {
-                System.err.println("⚠️ Failed to create notification: " + e.getMessage());
+                System.err.println(" Failed to create notification: " + e.getMessage());
                 e.printStackTrace();
             }
             
@@ -172,7 +167,7 @@ public class BookingService {
             
             notificationService.createNotification(notification);
         } catch (Exception e) {
-            System.err.println("⚠️ Failed to create notification: " + e.getMessage());
+            System.err.println(" Failed to create notification: " + e.getMessage());
             e.printStackTrace();
         }
         

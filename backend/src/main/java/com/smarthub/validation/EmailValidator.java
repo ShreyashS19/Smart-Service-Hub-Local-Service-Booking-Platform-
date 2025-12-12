@@ -14,7 +14,7 @@ public class EmailValidator {
     
     public boolean isValid(String email) {
         if (email == null || email.isEmpty()) {
-            return true; // Email is optional
+            return true; 
         }
         return pattern.matcher(email).matches();
     }

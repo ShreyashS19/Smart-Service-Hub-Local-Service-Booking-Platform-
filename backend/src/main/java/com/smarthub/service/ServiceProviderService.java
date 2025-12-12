@@ -29,7 +29,6 @@ public class ServiceProviderService {
     public ServiceProvider updateProfile(Integer id, ServiceProvider updatedProvider) {
         ServiceProvider provider = getProfile(id);
         
-        // Update only non-null fields
         if (updatedProvider.getFullName() != null) {
             provider.setFullName(updatedProvider.getFullName());
         }
@@ -70,7 +69,6 @@ public class ServiceProviderService {
         return serviceProviderRepository.findAll();
     }
     
-    // ✅ FIXED: Implement getProviderReviews method
     public List<Review> getProviderReviews(Integer providerId) {
         return reviewRepository.findByProviderId(providerId);
     }

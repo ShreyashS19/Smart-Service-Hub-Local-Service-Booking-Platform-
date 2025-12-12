@@ -12,8 +12,8 @@ type Booking = {
   userId: number;
   providerId: number;
   serviceType: string;
-  bookingDate: string;   // yyyy-MM-dd
-  bookingTime: string;   // HH:mm:ss
+  bookingDate: string;  
+  bookingTime: string;  
   status: "PENDING" | "ACCEPTED" | "REJECTED" | "COMPLETED" | "CANCELLED";
 };
 
@@ -52,13 +52,11 @@ const Reviews = () => {
   const [completedBookings, setCompletedBookings] = useState<Booking[]>([]);
   const [loading, setLoading] = useState(false);
 
-  // Compose new review
   const [openReview, setOpenReview] = useState(false);
   const [selectedBooking, setSelectedBooking] = useState<Booking | null>(null);
   const [rating, setRating] = useState<number>(0);
   const [comment, setComment] = useState<string>("");
 
-  // For showing a small list of reviews of the selected provider (optional)
   const [providerReviews, setProviderReviews] = useState<Review[]>([]);
   const [loadingProviderReviews, setLoadingProviderReviews] = useState(false);
 
@@ -91,7 +89,6 @@ const Reviews = () => {
     }
   };
 
-  // Optional: load provider's existing reviews to display context
   const fetchProviderReviews = async (providerId: number) => {
     try {
       setLoadingProviderReviews(true);
@@ -160,7 +157,6 @@ const Reviews = () => {
       toast({ title: "Success!", description: "Review submitted successfully" });
       setOpenReview(false);
 
-      // Refresh provider reviews to include the newly created one
       fetchProviderReviews(selectedBooking.providerId);
     } catch (e: any) {
       toast({ title: "Error", description: e?.message || "Could not submit review", variant: "destructive" });
@@ -181,7 +177,6 @@ const Reviews = () => {
 
   useEffect(() => {
     fetchCompletedBookings();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -209,7 +204,6 @@ const Reviews = () => {
                 <DialogDescription>Share your experience with the service provider</DialogDescription>
               </DialogHeader>
 
-              {/* Booking chooser */}
               <div className="space-y-2">
                 <Label>Select Booking</Label>
                 <div className="space-y-2 max-h-48 overflow-auto pr-1">
@@ -252,7 +246,6 @@ const Reviews = () => {
                 Submit Review
               </Button>
 
-              {/* Optional: show existing reviews for the provider */}
               {selectedBooking && (
                 <div className="pt-4 border-t border-border">
                   <p className="text-sm text-muted-foreground mb-2">

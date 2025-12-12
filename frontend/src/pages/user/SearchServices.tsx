@@ -34,15 +34,12 @@ const SearchServices = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
 
-  // Filters
   const [serviceType, setServiceType] = useState("");
   const [userLocation, setUserLocation] = useState("");
 
-  // Data
   const [providers, setProviders] = useState<Provider[]>([]);
   const [loading, setLoading] = useState(false);
 
-  // Session
   const session: LoginSession | null = useMemo(() => {
     try {
       const raw = localStorage.getItem("userData");
@@ -63,7 +60,6 @@ const SearchServices = () => {
     }
     navigator.geolocation.getCurrentPosition(
       () => {
-        // Demo: use a simple placeholder city
         setUserLocation("Downtown");
         toast({
           title: "Location detected",
@@ -126,7 +122,6 @@ const SearchServices = () => {
   };
 
   const handleBookNow = (provider: Provider) => {
-    // Check if user is logged in
     if (!session?.id || session.role !== "USER") {
       toast({
         title: "Not logged in",
@@ -136,7 +131,6 @@ const SearchServices = () => {
       return;
     }
 
-    // Store provider info and booking data in localStorage
     const bookingData = {
       providerId: provider.providerId,
       service: provider.serviceType,
@@ -149,15 +143,11 @@ const SearchServices = () => {
 
     localStorage.setItem('pendingBooking', JSON.stringify(bookingData));
     
-    // Navigate to the booking page
     navigate('/booking');
   };
 
-  // Optional: auto-load providers once
   useEffect(() => {
-    // Initial fetch: show all or by default filters
     fetchProviders();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -167,7 +157,6 @@ const SearchServices = () => {
         <p className="text-muted-foreground">Find trusted service providers near you</p>
       </div>
 
-      {/* Search Filters */}
       <Card>
         <CardHeader>
           <CardTitle>Search Filters</CardTitle>
@@ -212,7 +201,6 @@ const SearchServices = () => {
         </CardContent>
       </Card>
 
-      {/* Service Providers */}
       <div className="space-y-4">
         <h2 className="text-2xl font-semibold text-foreground">Available Service Providers</h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">

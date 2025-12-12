@@ -113,12 +113,11 @@ const ProviderDashboard = () => {
 
   useEffect(() => {
     fetchBookings();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [providerId]);
 
   const totalBookings = bookings.length;
   const completedCount = bookings.filter((b) => b.status === "COMPLETED").length;
-  const averageRating = 4.8; // hook up to aggregates later if desired
+  const averageRating = 4.8; 
 
   return (
     <DashboardLayout
@@ -134,7 +133,6 @@ const ProviderDashboard = () => {
           <p className="text-muted-foreground">Manage your services and bookings</p>
         </div>
 
-        {/* Stats Cards */}
         <div className="grid sm:grid-cols-3 gap-4">
           <Card>
             <CardContent className="pt-6">
@@ -162,7 +160,6 @@ const ProviderDashboard = () => {
           </Card>
         </div>
 
-        {/* Booking Requests */}
         <Card>
           <CardHeader>
             <CardTitle>Booking Requests</CardTitle>

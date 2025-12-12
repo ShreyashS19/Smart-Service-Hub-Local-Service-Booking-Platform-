@@ -36,8 +36,7 @@ public class ServiceProviderController {
     ) {
         return ResponseEntity.ok(serviceProviderService.searchProviders(type, location));
     }
-    
-    // ✅ Single endpoint for provider reviews (removed duplicate)
+   
     @GetMapping("/reviews/{providerId}")
     public ResponseEntity<List<Review>> getProviderReviews(@PathVariable Integer providerId) {
         return ResponseEntity.ok(serviceProviderService.getProviderReviews(providerId));

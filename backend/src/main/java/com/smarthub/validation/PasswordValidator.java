@@ -7,7 +7,6 @@ import java.util.regex.Pattern;
 @Component
 public class PasswordValidator {
     
-    // Min 8 chars, 1 uppercase, 1 number, 1 special char
     private static final String PASSWORD_PATTERN = 
         "^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+=!])(?=\\S+$).{8,}$";
     

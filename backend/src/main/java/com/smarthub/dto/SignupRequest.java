@@ -21,7 +21,6 @@ public class SignupRequest {
     @NotNull(message = "Role is required")
     private String role;
     
-    // Service Provider specific fields
     private String serviceType;
     private Integer experience;
     private String price;

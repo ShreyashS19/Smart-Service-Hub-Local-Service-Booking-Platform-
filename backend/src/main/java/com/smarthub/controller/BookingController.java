@@ -33,7 +33,6 @@ public class BookingController {
         return ResponseEntity.ok(bookingService.getProviderBookings(providerId));
     }
 
-    // ✅ Support both PUT and PATCH methods
     @PutMapping("/{bookingId}/status")
     @PatchMapping("/{bookingId}/status")
     public ResponseEntity<Booking> updateStatus(

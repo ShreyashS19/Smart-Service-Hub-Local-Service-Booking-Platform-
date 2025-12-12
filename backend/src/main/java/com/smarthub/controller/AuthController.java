@@ -16,13 +16,11 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/auth")
-// ✅ REMOVE @CrossOrigin annotation - using global config instead
 public class AuthController {
     
     @Autowired
     private AuthService authService;
     
-    // Test endpoint
     @GetMapping("/test")
     public ResponseEntity<Map<String, String>> test() {
         Map<String, String> response = new HashMap<>();

@@ -34,7 +34,6 @@ const Home = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
       
-      {/* Hero Section */}
       <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8" style={{ background: 'var(--gradient-hero)' }}>
         <div className="container mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -66,7 +65,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Features Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto">
           <div className="text-center mb-12">
@@ -102,7 +100,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-primary/5">
         <div className="container mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">

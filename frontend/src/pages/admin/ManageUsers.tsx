@@ -45,10 +45,10 @@ const ManageUsers = () => {
         }
         
         const data = await res.json();
-        console.log("✅ Users fetched successfully:", data);
+        console.log(" Users fetched successfully:", data);
         setUsers(data);
       } catch (error) {
-        console.error("❌ Failed to load users:", error);
+        console.error(" Failed to load users:", error);
         setUsers([]);
       } finally {
         setLoading(false);
@@ -58,9 +58,7 @@ const ManageUsers = () => {
     fetchUsers();
   }, []);
 
-  // Helper function to get role display text and color
   const getRoleDisplay = (role) => {
-    // Default to USER if role is null, undefined, or empty
     const userRole = role || 'USER';
     
     const roleConfig = {

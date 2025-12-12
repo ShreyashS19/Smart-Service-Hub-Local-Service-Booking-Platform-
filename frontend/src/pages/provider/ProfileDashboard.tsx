@@ -84,12 +84,11 @@ export default function ProfileDashboard() {
 
   useEffect(() => { 
     fetchData(); 
-    // eslint-disable-next-line
   }, [providerId]);
 
   const total = bookings.length;
   const completed = bookings.filter((b) => b.status === "COMPLETED").length;
-  const avgRating = 4.8; // hook provider reviews aggregation later
+  const avgRating = 4.8; 
 
   return (
     <DashboardLayout 

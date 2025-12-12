@@ -125,7 +125,6 @@ export default function PaymentPage() {
     setLoading(true);
 
     try {
-      // Simulate payment processing
       await new Promise(resolve => setTimeout(resolve, 1500));
 
       const isTestCard = cleanedCard === '4242424242424242';
@@ -134,10 +133,8 @@ export default function PaymentPage() {
         throw new Error('Payment failed. Please use test card: 4242 4242 4242 4242');
       }
 
-      // ✅ Mark booking as PAID in database
       await markBookingAsPaid(paymentInfo.bookingId);
 
-      // Clear payment data
       localStorage.removeItem('pendingPayment');
 
       toast({

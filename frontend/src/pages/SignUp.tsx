@@ -33,7 +33,6 @@ const SignUp = () => {
     email: "",
     role: "",
     password: "",
-    // Additional fields for service provider
     serviceType: "",
     experience: "",
     price: "",
@@ -44,7 +43,6 @@ const SignUp = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Validation
     if (!formData.fullName || !formData.mobile || !formData.role || !formData.password) {
       toast({
         title: "Error",
@@ -54,7 +52,6 @@ const SignUp = () => {
       return;
     }
 
-    // Validate mobile number (10 digits)
     if (!/^\d{10}$/.test(formData.mobile)) {
       toast({
         title: "Error",
@@ -64,7 +61,6 @@ const SignUp = () => {
       return;
     }
 
-    // Validate password
     if (!/^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+=!])(?=\S+$).{8,}$/.test(formData.password)) {
       toast({
         title: "Error",
@@ -77,7 +73,6 @@ const SignUp = () => {
     setIsLoading(true);
 
     try {
-      // ✅ FIXED: Actually send data to backend API
       // const response = await fetch("${BACKEND_URL}/api/auth/register", {
       const response = await fetch(`${BACKEND_URL}/api/auth/register`, {
 
@@ -94,7 +89,6 @@ const SignUp = () => {
         throw new Error(data.message || "Registration failed");
       }
 
-      // Store user data in localStorage for session management
       localStorage.setItem("userData", JSON.stringify(data));
 
       toast({
@@ -102,7 +96,6 @@ const SignUp = () => {
         description: "Account created successfully",
       });
 
-      // Redirect based on role from server response
       navigate(data.redirectUrl);
 
     } catch (error: any) {
@@ -134,7 +127,6 @@ const SignUp = () => {
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
-            {/* Full Name */}
             <div className="space-y-2">
               <Label htmlFor="fullName">Full Name *</Label>
               <Input
@@ -146,7 +138,6 @@ const SignUp = () => {
               />
             </div>
 
-            {/* Mobile Number */}
             <div className="space-y-2">
               <Label htmlFor="mobile">Mobile Number *</Label>
               <Input
@@ -159,7 +150,6 @@ const SignUp = () => {
               />
             </div>
 
-            {/* Email (Optional) */}
             <div className="space-y-2">
               <Label htmlFor="email">Email (Optional)</Label>
               <Input
@@ -171,7 +161,6 @@ const SignUp = () => {
               />
             </div>
 
-            {/* Role Selection */}
             <div className="space-y-2">
               <Label htmlFor="role">I am a *</Label>
               <Select
@@ -189,7 +178,6 @@ const SignUp = () => {
               </Select>
             </div>
 
-            {/* Service Provider Additional Fields */}
             {formData.role === "SERVICE_PROVIDER" && (
               <>
                 <div className="space-y-2">
@@ -236,7 +224,6 @@ const SignUp = () => {
               </>
             )}
 
-            {/* Location (for User and Provider) */}
             {(formData.role === "USER" || formData.role === "SERVICE_PROVIDER") && (
               <div className="space-y-2">
                 <Label htmlFor="location">Location</Label>
@@ -249,7 +236,6 @@ const SignUp = () => {
               </div>
             )}
 
-            {/* Password */}
             <div className="space-y-2">
               <Label htmlFor="password">Password *</Label>
               <Input

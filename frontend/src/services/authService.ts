@@ -1,6 +1,3 @@
-// ============================================
-// INTERFACES
-// ============================================
 const BACKEND_URL = import.meta.env.VITE_API_BASE;
 
 interface LoginRequest {
@@ -32,9 +29,6 @@ interface AuthResponse {
   mobile: string;
 }
 
-// ============================================
-// ERROR TYPES & CLASS
-// ============================================
 
 export enum ErrorType {
   USER_NOT_FOUND = "USER_NOT_FOUND",
@@ -62,21 +56,14 @@ export class AuthError extends Error {
     this.statusCode = statusCode;
     this.details = details;
 
-    // Maintains proper stack trace for where error was thrown
     Object.setPrototypeOf(this, AuthError.prototype);
   }
 }
 
-// ============================================
-// AUTH SERVICE CLASS
-// ============================================
 
 class AuthService {
   private readonly baseURL = `${BACKEND_URL}/api/auth`;
 
-  /**
-   * Login user with phone number, password, and role
-   */
   async login(credentials: LoginRequest): Promise<AuthResponse> {
     try {
       const response = await fetch(`${this.baseURL}/login`, {
@@ -103,9 +90,6 @@ class AuthService {
     }
   }
 
-  /**
-   * Register new user
-   */
   async register(userData: SignupRequest): Promise<AuthResponse> {
     try {
       const response = await fetch(`${this.baseURL}/register`, {
@@ -132,9 +116,6 @@ class AuthService {
     }
   }
 
-  /**
-   * Parse API error response and return typed error
-   */
   private parseError(
     statusCode: number,
     data: Record<string, any>
@@ -175,9 +156,6 @@ class AuthService {
     return new AuthError(message, errorType, statusCode, details);
   }
 
-  /**
-   * Create network error
-   */
   private createNetworkError(error: any): AuthError {
     return new AuthError(
       "Unable to connect to server. Please check your internet connection.",
@@ -186,46 +164,28 @@ class AuthService {
     );
   }
 
-  /**
-   * Store user session
-   */
   storeSession(userData: AuthResponse): void {
     localStorage.setItem("userData", JSON.stringify(userData));
   }
 
-  /**
-   * Get stored user session
-   */
   getSession(): AuthResponse | null {
     const userData = localStorage.getItem("userData");
     return userData ? JSON.parse(userData) : null;
   }
 
-  /**
-   * Clear user session
-   */
   clearSession(): void {
     localStorage.removeItem("userData");
   }
 
-  /**
-   * Check if user is logged in
-   */
   isAuthenticated(): boolean {
     return !!this.getSession();
   }
 
-  /**
-   * Get user ID from session
-   */
   getUserId(): number | null {
     const session = this.getSession();
     return session ? session.id : null;
   }
 
-  /**
-   * Get user role from session
-   */
   getUserRole(): string | null {
     const session = this.getSession();
     return session ? session.role : null;
@@ -234,13 +194,6 @@ class AuthService {
 
 export const authService = new AuthService();
 
-// ============================================
-// HELPER FUNCTIONS
-// ============================================
-
-/**
- * Error message mapping for user display
- */
 export const getErrorMessage = (error: AuthError): string => {
   switch (error.type) {
     case ErrorType.USER_NOT_FOUND:
@@ -266,9 +219,6 @@ export const getErrorMessage = (error: AuthError): string => {
   }
 };
 
-/**
- * Get button text for error scenarios
- */
 export const getErrorAction = (error: AuthError): string => {
   switch (error.type) {
     case ErrorType.USER_NOT_FOUND:
@@ -282,9 +232,6 @@ export const getErrorAction = (error: AuthError): string => {
   }
 };
 
-/**
- * Get redirect URL for error scenarios
- */
 export const getErrorActionUrl = (error: AuthError): string => {
   switch (error.type) {
     case ErrorType.USER_NOT_FOUND:

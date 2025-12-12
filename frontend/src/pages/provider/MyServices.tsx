@@ -141,7 +141,6 @@ export default function MyServices() {
 
   useEffect(() => {
     fetchProvider();
-    // eslint-disable-next-line
   }, [providerId]);
 
   return (
